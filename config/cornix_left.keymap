@@ -2,17 +2,12 @@
  * Cornix Left (親機) + roBa Right (子機) 統合キーマップ
  * 左手: Cornix 50キー
  * 右手: roBa 41キー + PMW3610トラックボール
+ *
+ * 注意: このキーマップはcornix.keymapをベースにしています
+ * トラックボール設定はroBa_R.overlayで行います
  */
 
-#include <behaviors.dtsi>
-#include <dt-bindings/zmk/bt.h>
-#include <dt-bindings/zmk/keys.h>
-#include <dt-bindings/zmk/mouse.h>
-
-// トラックボール設定: レイヤー5でスクロールモード
-&trackball {
-    scroll-layers = <5>;
-};
+#include "cornix.keymap"
 
 / {
     keymap {
