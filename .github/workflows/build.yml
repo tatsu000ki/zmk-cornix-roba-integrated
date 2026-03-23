@@ -55,7 +55,7 @@ jobs:
         run: cp build/left/zephyr/zmk.uf2 cornix_roba_L.uf2
 
       - name: West Build (roBa Right)
-        run: west build -s zmk/app -b seeeduino_xiao_ble -d build/right -- -DSHIELD=cornix_roba_R -DZMK_CONFIG="${GITHUB_WORKSPACE}/config" -DSNIPPET=studio-rpc-usb-uart
+        run: west build -s zmk/app -b seeeduino_xiao_ble -d build/right -- -DSHIELD=roBa_R -DZMK_CONFIG="${GITHUB_WORKSPACE}/config" -DSNIPPET=studio-rpc-usb-uart -DBOARD_ROOT="${GITHUB_WORKSPACE}"
 
       - name: Cornix-roBa Right Kconfig file
         run: cat build/right/zephyr/.config | grep -v "^#" | grep -v "^$"
