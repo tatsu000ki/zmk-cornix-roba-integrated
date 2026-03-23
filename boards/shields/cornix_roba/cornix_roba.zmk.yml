@@ -1,0 +1,14 @@
+file_format: "1"
+id: cornix_roba
+name: Cornix-roBa
+type: shield
+url: https://github.com/tatsu000ki/zmk-cornix-roba-integrated
+requires: [seeeduino_xiao_ble, cornix_left]
+features:
+  - keys
+  - encoder
+  - pointing
+exposes: [i2c_oled]
+siblings:
+  - cornix_roba_L
+  - cornix_roba_R

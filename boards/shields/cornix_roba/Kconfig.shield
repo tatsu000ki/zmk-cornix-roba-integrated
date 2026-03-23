@@ -1,0 +1,5 @@
+config SHIELD_CORNIX_ROBA_L
+    def_bool $(shields_list_contains,cornix_roba_L)
+
+config SHIELD_CORNIX_ROBA_R
+    def_bool $(shields_list_contains,cornix_roba_R)
