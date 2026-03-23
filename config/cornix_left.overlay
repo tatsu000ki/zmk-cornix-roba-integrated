@@ -1,0 +1,13 @@
+// Cornix Left as Central (親機) with split configuration
+
+/ {
+    chosen {
+        zmk,kscan = <&kscan0>;
+        zmk,matrix-transform = <&default_transform>;
+    };
+};
+
+// スプリット設定: roBa_Rを子機として接続
+&default_transform {
+    col-offset = <0>;
+};
