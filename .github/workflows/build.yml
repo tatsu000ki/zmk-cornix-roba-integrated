@@ -46,7 +46,7 @@ jobs:
         run: west zephyr-export
 
       - name: West Build (Cornix Left)
-        run: west build -s zmk/app -b cornix_left -d build/left -- -DZMK_CONFIG="${GITHUB_WORKSPACE}/config"
+        run: west build -s zmk/app -b cornix_left -d build/left -- -DZMK_CONFIG="${GITHUB_WORKSPACE}/config" -DBOARD_ROOT="${GITHUB_WORKSPACE}"
 
       - name: Cornix Left Kconfig file
         run: cat build/left/zephyr/.config | grep -v "^#" | grep -v "^$"
