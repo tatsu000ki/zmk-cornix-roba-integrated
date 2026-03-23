@@ -1,4 +1,0 @@
-# Copyright (c) 2024 The ZMK Contributors
-# SPDX-License-Identifier: MIT
-
-# Empty CMakeLists.txt for module
