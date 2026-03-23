@@ -2,6 +2,8 @@ manifest:
   remotes:
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
+    - name: hitsmaxft
+      url-base: https://github.com/hitsmaxft
     - name: kumamuk-git
       url-base: https://github.com/kumamuk-git
     - name: urob
@@ -9,8 +11,11 @@ manifest:
   projects:
     - name: zmk
       remote: zmkfirmware
-      revision: v0.3-branch
+      revision: v0.3
       import: app/west.yml
+    - name: zmk-keyboard-cornix
+      remote: hitsmaxft
+      revision: v2.6.8
     - name: zmk-pmw3610-driver
       remote: kumamuk-git
       revision: main
