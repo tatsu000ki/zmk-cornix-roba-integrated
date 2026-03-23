@@ -1,72 +1,13 @@
-name: Build
-
+name: Build ZMK firmware
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
   workflow_dispatch:
+  push:
+    paths:
+      - "boards/**"
+      - "config/**"
+    tags-ignore:
+      - "*"
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-    container:
-      image: zmkfirmware/zmk-build-arm:stable
-    name: Build
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Cache west modules
-        uses: actions/cache@v4
-        env:
-          cache-name: cache-zephyr-modules
-        with:
-          path: |
-            modules/
-            tools/
-            zephyr/
-            bootloader/
-            zmk/
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('config/west.yml') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
-
-      - name: West Init
-        run: west init -l config
-
-      - name: West Update
-        run: west update
-
-      - name: West Zephyr export
-        run: west zephyr-export
-
-      - name: West Build (Cornix Left)
-        run: west build -s zmk/app -b cornix_left -d build/left -- -DZMK_CONFIG="${GITHUB_WORKSPACE}/config" -DBOARD_ROOT="${GITHUB_WORKSPACE}"
-
-      - name: Cornix Left Kconfig file
-        run: cat build/left/zephyr/.config | grep -v "^#" | grep -v "^$"
-
-      - name: Rename zmk.uf2 for left
-        run: cp build/left/zephyr/zmk.uf2 cornix_roba_L.uf2
-
-      - name: West Build (roBa Right)
-        run: west build -s zmk/app -b seeeduino_xiao_ble -d build/right -- -DSHIELD=roBa_R -DZMK_CONFIG="${GITHUB_WORKSPACE}/config" -DSNIPPET=studio-rpc-usb-uart -DBOARD_ROOT="${GITHUB_WORKSPACE}"
-
-      - name: Cornix-roBa Right Kconfig file
-        run: cat build/right/zephyr/.config | grep -v "^#" | grep -v "^$"
-
-      - name: Rename zmk.uf2 for right
-        run: cp build/right/zephyr/zmk.uf2 cornix_roba_R.uf2
-
-      - name: Archive artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: firmware
-          path: |
-            cornix_roba_L.uf2
-            cornix_roba_R.uf2
+    uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
