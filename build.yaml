@@ -1,7 +1,6 @@
 ---
 include:
   - board: cornix_left
-    shield: cornix_roba_L
   - board: seeeduino_xiao_ble
     shield: cornix_roba_R
     snippet: studio-rpc-usb-uart
