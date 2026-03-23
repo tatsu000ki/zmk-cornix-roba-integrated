@@ -4,10 +4,16 @@ manifest:
       url-base: https://github.com/zmkfirmware
     - name: petejohanson
       url-base: https://github.com/petejohanson
+    - name: jzf
+      url-base: https://github.com/jzf
   projects:
     - name: zmk
       remote: petejohanson
       revision: feat/pointers-move-scroll
       import: app/west.yml
+    - name: zmk-keyboard-cornix
+      remote: jzf
+      revision: main
+      path: cornix
   self:
     path: config
