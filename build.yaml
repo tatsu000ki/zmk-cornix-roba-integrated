@@ -3,3 +3,9 @@ include:
   - board: cornix_left
   - board: seeeduino_xiao_ble
     shield: roBa_R
+  
+  # Settings reset (for troubleshooting)
+  - board: cornix_left
+    shield: settings_reset
+  - board: seeeduino_xiao_ble
+    shield: settings_reset
